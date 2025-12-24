@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de Secciones{% endblock %}
+
+{% block contenido %}
+<div class="container my-4">
+
+    <h1 class="mb-4">Listado de Secciones</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Año</th>
+                    <th>Numero de Articulos</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for seccio in seccions %}
+                    <tr>
+                        <td>{{ seccio.codi }}</td>
+                        <td>{{ seccio.nom }}</td>
+                        <td>{{ seccio.descripcio }}</td>
+                        <td>{{ seccio.any }}</td>
+                        <td>{{ seccio.articles|length }}</td>
+                        <td>
+                            <a href="{{ path('seccio_detall', {'codi': seccio.codi}) }}" class="btn btn-primary btn-sm">
+                                Ver
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">No hay secciones disponibles</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

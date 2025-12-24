@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalle de {{ seccio.nom }}{% endblock %}
+
+{% block contenido %}
+<div class="container my-4">
+
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-4 text-center">
+            <img src="{{ asset('imgs/seccio/' ~ seccio.nom ~ '.jpg') }}" class="img-fluid rounded shadow" alt="Imagen de {{ seccio.nom }}">
+        </div>
+        <div class="col-md-8">
+            <h1>{{ seccio.nom }}</h1>
+            <p><strong>Codi:</strong> {{ seccio.codi }}</p>
+            <p><strong>Descripcion:</strong> {{ seccio.descripcio }}</p>
+            <p><strong>Año:</strong> {{ seccio.any }}</p>
+            <p><strong>Numero de articulos:</strong> {{ seccio.articles|length }}</p>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for article in seccio.articles %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ asset('imgs/' ~ article.imatge) }}" class="card-img-top" alt="{{ article.nom }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.nom }}</h5>
+                        <p class="card-text">{{ article.descripcio }}</p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">No hay articulos en esta seccion.</p>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('seccio_llistat') }}" class="btn btn-primary mt-4">
+        Volver al listado
+    </a>
+
+</div>
+{% endblock %}
