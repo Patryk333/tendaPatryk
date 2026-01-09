@@ -9,38 +9,27 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class SeccioController extends AbstractController
 {
-    private array $seccions;
 
     public function __construct(private DadesSeccioServei $dades)
     {
-        $this->seccions = $dades->get();
     }
 
     #[Route('/seccions', name: 'seccio_llistat')]
     public function llistat(): Response
     {
         return $this->render('seccio/llistat.html.twig', [
-            'seccions' => $this ->seccions
+            'seccions' => $this->dades->llistarSeccions()
         ]);
     }
 
     #[Route('/seccions/{codi}', name: 'seccio_detall')]
     public function detall(int $codi): Response
     {
-        $seccio = null;
-        foreach ($this->seccions as $s) {
-            if ($s['codi'] == $codi) {
-                $seccio = $s;
-                break;
-            }
-        }
+        $seccio = $this->dades->obtenirSeccio($codi);
 
         if (!$seccio) {
-            throw $this->createNotFoundException("Seccion no trobada");
+            throw $this->createNotFoundException('Secció no trobada');
         }
-
-        $seccio['nombre_articles'] = count($seccio['articles']);
-        $seccio['imatge'] = 'seccio' . $codi . '.jpg';
 
         return $this->render('seccio/detall.html.twig', [
             'seccio' => $seccio

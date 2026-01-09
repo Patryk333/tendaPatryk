@@ -34,6 +34,23 @@ class DadesSeccioServei
     {
         return $this->seccions;
     }
+
+    public function llistarSeccions(): array{
+        return $this->seccions;
+    }
+
+    public function obtenirSeccio(int $codi): ?array
+    {
+        foreach ($this->seccions as $seccio) {
+            if ((int)$seccio['codi'] === $codi) {
+                $seccio['nombre_articles'] = count($seccio['articles']);
+                $seccio['imatge'] = 'seccio' . $codi . '.jpg';
+                return $seccio;
+            }
+        }
+
+        return null;
+    }
 }
 
 ?>
