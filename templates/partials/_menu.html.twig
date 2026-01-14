@@ -20,7 +20,25 @@
                         Secciones
                     </a>
                 </li>
-                <li><a href="/seccions/crear">Afegir</a></li>
+                
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Afegir
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                    <a class="dropdown-item {% if app.request.get('_route') == 'seccio_crear' %}active{% endif %}" href="{{ path('seccio_crear') }}">
+                        Afegir Seccions
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="dropdown-item {% if app.request.get('_route') == 'article_crear' %}active{% endif %}" href="{{ path('article_crear') }}">
+                        Afegir Articles
+                    </a>
+                </li>
+                    </ul>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                         Opciones

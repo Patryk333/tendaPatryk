@@ -11,21 +11,22 @@
         </div>
         <div class="col-md-8">
             <h1>{{ seccio.nom }}</h1>
-            <p><strong>Codi:</strong> {{ seccio.codi }}</p>
+            <p><strong>Codi:</strong> {{ seccio.id }}</p>
             <p><strong>Descripcion:</strong> {{ seccio.descripcio }}</p>
             <p><strong>Año:</strong> {{ seccio.any }}</p>
-            <p><strong>Numero de articulos:</strong> {{ seccio.articles|length }}</p>
+            <p><strong>Numero de articulos:</strong> {{ seccio.seccioArticles|length }}</p>
         </div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% for article in seccio.articles %}
+        {% for article in seccio.seccioArticles %}
             <div class="col">
                 <div class="card h-100 shadow-sm">
                     <img src="{{ asset('imgs/' ~ article.imatge) }}" class="card-img-top" alt="{{ article.nom }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ article.nom }}</h5>
-                        <p class="card-text">{{ article.descripcio }}</p>
+                        <p class="card-text">Precio: {{ article.preu }}€</p>
+                        <p class="card-text">Stock: {{ article.stock }}</p>
                     </div>
                 </div>
             </div>

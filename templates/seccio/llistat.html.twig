@@ -22,13 +22,13 @@
             <tbody>
                 {% for seccio in seccions %}
                     <tr>
-                        <td>{{ seccio.codi }}</td>
+                        <td>{{ seccio.id }}</td>
                         <td>{{ seccio.nom }}</td>
                         <td>{{ seccio.descripcio }}</td>
                         <td>{{ seccio.any }}</td>
-                        <td>{{ seccio.articles|length }}</td>
+                        <td>{{ seccio.seccioArticles|length }}</td>
                         <td>
-                            <a href="{{ path('seccio_detall', {'codi': seccio.codi}) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ path('seccio_detall', {'codi': seccio.id}) }}" class="btn btn-primary btn-sm">
                                 Ver
                             </a>
                         </td>
