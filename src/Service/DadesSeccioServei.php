@@ -30,10 +30,6 @@ class DadesSeccioServei
             ]
         ];
 
-    public function get(): array
-    {
-        return $this->seccions;
-    }
 
     public function llistarSeccions(): array{
         return $this->seccions;
